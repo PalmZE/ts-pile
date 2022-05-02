@@ -157,15 +157,15 @@ const _getOrElse = <A>(result: Result<unknown, A>, a: () => A): A =>
 export const getOrElse: GetOrElse = pipeable2(_getOrElse)
 
 interface Match {
-  <E, A, B>(result: Result<E, A>, ifOk: (a: A) => B, ifError: (e: E) => B): B
-  <E, A, B>(ifOk: (a: A) => B, ifError: (e: E) => B): (
+  <E, A, B>(result: Result<E, A>, ifError: (e: E) => B, ifOk: (a: A) => B): B
+  <E, A, B>(ifError: (e: E) => B, ifOk: (a: A) => B): (
     result: Result<E, A>
   ) => B
 }
 const _match = <E, A, B>(
   result: Result<E, A>,
-  ifOk: (a: A) => B,
-  ifError: (e: E) => B
+  ifError: (e: E) => B,
+  ifOk: (a: A) => B
 ): B => (result.kind === 'Ok' ? ifOk(result.value) : ifError(result.error))
 export const match: Match = pipeable3(_match)
 

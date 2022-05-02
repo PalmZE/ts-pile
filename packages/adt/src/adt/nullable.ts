@@ -86,15 +86,15 @@ const _getOrElse = <A>(nullable: Nullable<A>, ifAbsent: () => A): A =>
 export const getOrElse: GetOrElse = pipeable2(_getOrElse)
 
 interface Match {
-  <A, B>(nullable: Nullable<A>, ifPresent: (a: A) => B, ifAbsent: () => B): B
-  <A, B>(ifPresent: (a: A) => B, ifAbsent: () => B): (
+  <A, B>(nullable: Nullable<A>, ifAbsent: () => B, ifPresent: (a: A) => B): B
+  <A, B>(ifAbsent: () => B, ifPresent: (a: A) => B): (
     nullable: Nullable<A>
   ) => B
 }
 const _match = <A, B>(
   nullable: Nullable<A>,
-  ifPresent: (a: A) => B,
-  ifAbsent: () => B
+  ifAbsent: () => B,
+  ifPresent: (a: A) => B
 ): B => (isNonNullable(nullable) ? ifPresent(nullable) : ifAbsent())
 export const match: Match = pipeable3(_match)
 

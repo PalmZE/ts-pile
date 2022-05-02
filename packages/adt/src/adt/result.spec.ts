@@ -49,13 +49,13 @@ describe('result', () => {
     const b = () => 'B'
 
     it('returns ifOk branch is the result is Ok', () => {
-      expect(match(ok(1), a, b)).toStrictEqual('A')
-      expect(match(a, b)(ok(1))).toStrictEqual('A')
+      expect(match(ok(1), a, b)).toStrictEqual(b())
+      expect(match(a, b)(ok(1))).toStrictEqual(b())
     })
 
     it('returns ifError branch if the result is Error', () => {
-      expect(match(error(0), a, b)).toStrictEqual('B')
-      expect(match(a, b)(error(0))).toStrictEqual('B')
+      expect(match(error(0), a, b)).toStrictEqual(a())
+      expect(match(a, b)(error(0))).toStrictEqual(a())
     })
   })
 

@@ -62,12 +62,12 @@ describe('async-result', () => {
     const d = () => 'D'
 
     it('returns ifOk branch if the result is Ok', () => {
-      expect(match(ok(1), a, b, c, d)).toStrictEqual(c())
-      expect(match(a, b, c, d)(ok(1))).toStrictEqual(c())
+      expect(match(ok(1), a, b, c, d)).toStrictEqual(d())
+      expect(match(a, b, c, d)(ok(1))).toStrictEqual(d())
     })
     it('returns ifError branch if the result is Error', () => {
-      expect(match(error('e'), a, b, c, d)).toStrictEqual(d())
-      expect(match(a, b, c, d)(error('e'))).toStrictEqual(d())
+      expect(match(error('e'), a, b, c, d)).toStrictEqual(c())
+      expect(match(a, b, c, d)(error('e'))).toStrictEqual(c())
     })
     it('returns ifLoading branch if the result is Loading', () => {
       expect(match(loading, a, b, c, d)).toStrictEqual(b())
@@ -85,12 +85,12 @@ describe('async-result', () => {
     const c = () => 'C'
 
     it('returns ifOk branch if the result is Ok', () => {
-      expect(matchShort(ok(1), a, b, c)).toStrictEqual(b())
-      expect(matchShort(a, b, c)(ok(1))).toStrictEqual(b())
+      expect(matchShort(ok(1), a, b, c)).toStrictEqual(c())
+      expect(matchShort(a, b, c)(ok(1))).toStrictEqual(c())
     })
     it('returns ifError branch if the result is Error', () => {
-      expect(matchShort(error('e'), a, b, c)).toStrictEqual(c())
-      expect(matchShort(a, b, c)(error('e'))).toStrictEqual(c())
+      expect(matchShort(error('e'), a, b, c)).toStrictEqual(b())
+      expect(matchShort(a, b, c)(error('e'))).toStrictEqual(b())
     })
     it('returns ifLoadingOrInitial branch if the result is Loading', () => {
       expect(matchShort(loading, a, b, c)).toStrictEqual(a())

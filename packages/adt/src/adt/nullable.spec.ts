@@ -47,16 +47,16 @@ describe('nullable', () => {
     const b = () => 'B'
 
     it('returns ifAbsent branch if value is null | undefined', () => {
-      expect(match(null, a, b)).toStrictEqual(b())
-      expect(match(a, b)(null)).toStrictEqual(b())
+      expect(match(null, a, b)).toStrictEqual(a())
+      expect(match(a, b)(null)).toStrictEqual(a())
 
-      expect(match(undefined, a, b)).toStrictEqual(b())
-      expect(match(a, b)(undefined)).toStrictEqual(b())
+      expect(match(undefined, a, b)).toStrictEqual(a())
+      expect(match(a, b)(undefined)).toStrictEqual(a())
     })
 
     it('returns ifPresent branch if value is non nullable', () => {
-      expect(match(42, a, b)).toStrictEqual(a())
-      expect(match(a, b)(42)).toStrictEqual(a())
+      expect(match(42, a, b)).toStrictEqual(b())
+      expect(match(a, b)(42)).toStrictEqual(b())
     })
   })
 

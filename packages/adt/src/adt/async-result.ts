@@ -204,20 +204,20 @@ interface Match {
     result: AsyncResult<E, A>,
     ifInitial: () => B,
     ifLoading: () => B,
-    ifOk: (a: A) => B,
-    ifError: (e: E) => B
+    ifError: (e: E) => B,
+    ifOk: (a: A) => B
   ): B
   <E, A, B>(
     ifInitial: () => B,
     ifLoading: () => B,
-    ifOk: (a: A) => B,
-    ifError: (e: E) => B
+    ifError: (e: E) => B,
+    ifOk: (a: A) => B
   ): (result: AsyncResult<E, A>) => B
 }
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function _match(...args: any[]): any {
   if (arguments.length === 4) {
-    const [ifInitial, ifLoading, ifOk, ifError] = args
+    const [ifInitial, ifLoading, ifError, ifOk] = args
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     return (result: any) => {
@@ -234,7 +234,7 @@ function _match(...args: any[]): any {
     }
   }
 
-  const [result, ifInitial, ifLoading, ifOk, ifError] = args
+  const [result, ifInitial, ifLoading, ifError, ifOk] = args
   switch (result.kind) {
     case 'Initial':
       return ifInitial()
@@ -252,25 +252,25 @@ interface MatchShort {
   <E, A, B>(
     result: AsyncResult<E, A>,
     ifInitialOrLoading: () => B,
-    ifOk: (a: A) => B,
-    ifError: (e: E) => B
+    ifError: (e: E) => B,
+    ifOk: (a: A) => B
   ): B
   <E, A, B>(
     ifInitialOrLoading: () => B,
-    ifOk: (a: A) => B,
-    ifError: (e: E) => B
+    ifError: (e: E) => B,
+    ifOk: (a: A) => B
   ): (result: AsyncResult<E, A>) => B
 }
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function _matchShort(...args: any[]): any {
   if (arguments.length === 3) {
-    const [ifInitialOrLoading, ifOk, ifError] = args
+    const [ifInitialOrLoading, ifError, ifOk] = args
 
-    return match(ifInitialOrLoading, ifInitialOrLoading, ifOk, ifError)
+    return match(ifInitialOrLoading, ifInitialOrLoading, ifError, ifOk)
   }
 
-  const [result, ifInitialOrLoading, ifOk, ifError] = args
-  return match(result, ifInitialOrLoading, ifInitialOrLoading, ifOk, ifError)
+  const [result, ifInitialOrLoading, ifError, ifOk] = args
+  return match(result, ifInitialOrLoading, ifInitialOrLoading, ifError, ifOk)
 }
 export const matchShort: MatchShort = _matchShort
 
