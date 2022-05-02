@@ -1,0 +1,32 @@
+{
+  "root": "packages/adt",
+  "sourceRoot": "packages/adt/src",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/packages/adt",
+        "main": "packages/adt/src/index.ts",
+        "tsConfig": "packages/adt/tsconfig.lib.json",
+        "assets": ["packages/adt/*.md"]
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["packages/adt/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/packages/adt"],
+      "options": {
+        "jestConfig": "packages/adt/jest.config.ts",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}
