@@ -3,7 +3,10 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "test": "nx run-many --target=test --all"
+    "test": "nx run-many --target=test --all",
+    "build": "nx run-many --target=build --all",
+    "lint": "nx run-many --target=lint --all",
+    "deploy": "nx run-many --target=deploy --all"
   },
   "private": true,
   "dependencies": {
@@ -17,6 +20,7 @@
     "@nrwl/jest": "14.0.2",
     "@nrwl/js": "^14.0.2",
     "@nrwl/linter": "14.0.2",
+    "@nrwl/web": "^14.0.5",
     "@nrwl/workspace": "14.0.2",
     "@types/jest": "27.4.1",
     "@types/node": "16.11.7",
@@ -27,6 +31,7 @@
     "husky": "^7.0.4",
     "jest": "27.5.1",
     "lerna": "^4.0.0",
+    "ngx-deploy-npm": "^3.1.9",
     "nx": "14.0.2",
     "prettier": "^2.5.1",
     "ts-jest": "27.1.4",

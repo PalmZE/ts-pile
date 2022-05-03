@@ -3,13 +3,15 @@
   "sourceRoot": "packages/adt/src",
   "targets": {
     "build": {
-      "executor": "@nrwl/js:tsc",
+      "executor": "@nrwl/web:rollup",
       "outputs": ["{options.outputPath}"],
       "options": {
+        "format": ["esm", "umd", "cjs"],
         "outputPath": "dist/packages/adt",
-        "main": "packages/adt/src/index.ts",
+        "entryFile": "packages/adt/src/index.ts",
+        "project": "packages/adt/package.json",
         "tsConfig": "packages/adt/tsconfig.lib.json",
-        "assets": ["packages/adt/*.md"]
+        "external": ["typescript"]
       }
     },
     "lint": {
@@ -25,6 +27,13 @@
       "options": {
         "jestConfig": "packages/adt/jest.config.ts",
         "passWithNoTests": true
+      }
+    },
+    "deploy": {
+      "executor": "ngx-deploy-npm:deploy",
+      "options": {
+        "access": "public",
+        "noBuild": true
       }
     }
   },
