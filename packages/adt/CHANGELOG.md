@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 0.2.0 (2022-05-03)
+
+
+### Bug Fixes
+
+* export types in index ([a31f3ba](https://github.com/PalmZE/ts-pile/commit/a31f3baae8debe7319e2e5f930b695595c270304))
+
+
+
 # 0.1.0 (2022-05-02)
 
 
